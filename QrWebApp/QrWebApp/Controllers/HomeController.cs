@@ -13,6 +13,12 @@ namespace QrWebApp.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Index(String url)
+        {
+            return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
