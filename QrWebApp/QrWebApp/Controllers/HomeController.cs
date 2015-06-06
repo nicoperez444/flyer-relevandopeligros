@@ -11,7 +11,7 @@ namespace QrWebApp.Controllers
     {
         public ActionResult Index()
         {
-            GeneradorQr qr = new GeneradorQr();
+            QrGenerator qr = new QrGenerator();
 
             return View();
         }
