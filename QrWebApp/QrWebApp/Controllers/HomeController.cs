@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using com.libraries.flyergenerator;
+//using com.libraries.flyergenerator;
 
 namespace QrWebApp.Controllers
 {
@@ -28,7 +28,7 @@ namespace QrWebApp.Controllers
             Bitmap bitmap = qr.GetQr(url, 500, 100);
 
             //GUARDO EL QR
-            qr.SaveQr("C:/", id, bitmap);
+            qr.SaveQr("D:/", id, bitmap);
 
             return View();
         }
