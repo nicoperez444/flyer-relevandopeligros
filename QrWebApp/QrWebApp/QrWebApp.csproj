@@ -175,6 +175,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\logoQr.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -226,9 +227,9 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\com.libraries.flyergenerator\com.libraries.flyergenerator.csproj">
-      <Project>{28928a6d-6368-43e9-8644-3723ecae3869}</Project>
-      <Name>com.libraries.flyergenerator</Name>
+    <ProjectReference Include="..\com.libraries.qrgenerator\com.libraries.qrgenerator.csproj">
+      <Project>{e046dacc-c5a1-4060-a7d1-12556c1f94f9}</Project>
+      <Name>com.libraries.qrgenerator</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
