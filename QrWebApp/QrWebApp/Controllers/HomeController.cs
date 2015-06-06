@@ -18,10 +18,6 @@ namespace QrWebApp.Controllers
             //MODIFICAR LA URL NOMAS
             String url = "http://relevandopeligros.com/Peligro/InfoPeligro/282";
 
-
-
-
-
             String id = "QR_" + url.Replace("http://relevandopeligros.com/Peligro/InfoPeligro/", "");
 
             //CREA EL QR CON LOCO
