@@ -13,18 +13,8 @@ namespace QrWebApp.Controllers
     {
         public ActionResult Index()
         {
-            QrGenerator qr = new QrGenerator();
-
-            //MODIFICAR LA URL NOMAS
-            String url = "http://relevandopeligros.com/Peligro/InfoPeligro/282";
-
-            String id = "QR_" + url.Replace("http://relevandopeligros.com/Peligro/InfoPeligro/", "");
-
-            //CREA EL QR CON LOCO
-            Bitmap bitmap = qr.GetQr(url, 500, 100);
-
-            //GUARDO EL QR
-            qr.SaveQr("D:/", id, bitmap);
+            ViewBag.mensajeAviso = TempData["mensajeAviso"]; ;
+            ViewBag.mensajeFracaso = TempData["mensajeFracaso"]; ;
 
             return View();
         }
@@ -32,10 +22,29 @@ namespace QrWebApp.Controllers
         [HttpPost]
         public ActionResult Index(String url)
         {
-           //FlyerGenerator.getFlyer(this, null, "nombre");
+            //FlyerGenerator.getFlyer(this, null, "nombre");
 
+            try
+            {
+                //String url = "http://relevandopeligros.com/Peligro/InfoPeligro/253";
+
+                QrGenerator qr = new QrGenerator();
+
+                String id = url.Replace("http://relevandopeligros.org/Peligro/InfoPeligro/", "");
+
+                Bitmap bitmap = qr.GetQr(url, "", 500, 100);
+
+                qr.SaveQr("D:/", "QR_" + id, bitmap);
+
+                TempData["mensajeAviso"] = "QR generado =)";
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                TempData["mensajeFracaso"] = "No se pudo generar el QR :_(";
+            }
             return RedirectToAction("Index");
-
         }
 
         public ActionResult About()
