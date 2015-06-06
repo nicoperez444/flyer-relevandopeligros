@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-//using com.libraries.flyergenerator;
+using com.libraries.flyergenerator;
 
 namespace QrWebApp.Controllers
 {
@@ -36,13 +36,17 @@ namespace QrWebApp.Controllers
 
                 qr.SaveQr("D:/", "QR_" + id, bitmap);
 
+                string qrPath = "D:/QR_" + id + ".png";
+
+                FlyerGenerator.generateNewFlyer(qrPath,"D:/");
+
                 TempData["mensajeAviso"] = "QR generado =)";
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                TempData["mensajeFracaso"] = "No se pudo generar el QR :_(";
+                TempData["mensajeFracaso"] = "No se pudo generar el Flyer :_(";
             }
             return RedirectToAction("Index");
         }

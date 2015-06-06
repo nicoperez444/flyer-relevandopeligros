@@ -14,7 +14,10 @@ namespace com.libraries.flyergenerator
     {
 
         // esquema html por defecto 
-        private static string flyerImage = @"Design\\flyer-bg.png";
+        private static string imagePath = System.Web.HttpContext.Current.Server.MapPath("~/Images/");
+        private static string flyerImage = System.IO.Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Design/"), "flyer-bg.png");
+
+        //@"Design\flyer-bg.png";
         
         /// <summary>
         /// Permite generar el Flyer en base a los paramatros pasados, los path deben ser completos con
@@ -68,14 +71,16 @@ namespace com.libraries.flyergenerator
             flyerImageImg.Dispose();
             qrImageImg.Dispose();
 
-            bmpMerged.Save(mergeImage, System.Drawing.Imaging.ImageFormat.Png);
+            string pathImage = System.IO.Path.Combine(imagePath, mergeImage);
+
+            bmpMerged.Save(pathImage, System.Drawing.Imaging.ImageFormat.Png);
             bmpMerged.Dispose();
 
             // path de destino del archivo generado
             string dstPdfPath = outPutFilePath + "Flyer_" + DateTime.Now.Ticks.ToString() + ".pdf";
 
             // convertir a pdf la imagen creada
-            ConvertImageToPdf(mergeImage, dstPdfPath);
+            ConvertImageToPdf(pathImage, dstPdfPath);
 
             // retornar la url creada
             return dstPdfPath;
@@ -97,6 +102,7 @@ namespace com.libraries.flyergenerator
             using (var ms = new MemoryStream())
             {
                 var document = new iTextSharp.text.Document(pageSize, 0, 0, 0, 0);
+                //document.SetPageSize(iTextSharp.text.PageSize.A4);
                 iTextSharp.text.pdf.PdfWriter.GetInstance(document, ms).SetFullCompression();
                 document.Open();
                 var image = iTextSharp.text.Image.GetInstance(srcFilename);
