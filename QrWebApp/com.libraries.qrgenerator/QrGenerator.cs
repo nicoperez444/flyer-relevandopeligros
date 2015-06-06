@@ -20,7 +20,7 @@ namespace com.libraries.qrgenerator
             image.Save(savePath + fileName + ".png", ImageFormat.Png);
         }
 
-        public Bitmap GetQr(string content, int sizeQr, int sizeLogo)
+        public Bitmap GetQr(string content, String texto, int sizeQr, int sizeLogo)
         {
             QrEncoder qrEncoder = new QrEncoder(ErrorCorrectionLevel.H);
 
@@ -55,6 +55,13 @@ namespace com.libraries.qrgenerator
                 int y = ((image.Height - watermarkImage.Height) / 2);
 
                 imageGraphics.DrawImage(watermarkImage, x, y, watermarkImage.Width, watermarkImage.Height);
+            }
+
+            using (Graphics imageGraphics = Graphics.FromImage(image))
+            {
+                RectangleF rectf = new RectangleF(10, 0, image.Width, image.Height);
+
+                imageGraphics.DrawString(texto, new Font("Tahoma", 15), Brushes.DarkBlue, rectf);
             }
 
             return image;
