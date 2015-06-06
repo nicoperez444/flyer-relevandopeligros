@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using com.libraries.flyergenerator;
 
 namespace QrWebApp.Controllers
 {
@@ -35,7 +36,10 @@ namespace QrWebApp.Controllers
         [HttpPost]
         public ActionResult Index(String url)
         {
-            return View();
+           //FlyerGenerator.getFlyer(this, null, "nombre");
+
+            return RedirectToAction("Index");
+
         }
 
         public ActionResult About()
